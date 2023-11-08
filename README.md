@@ -36,3 +36,23 @@ Licensed under the Apache License. See [LICENSE](/LICENSE)
 Skills Network
 
 ## <h3 align="center"> © IBM Corporation 2023. All rights reserved. <h3/>
+
+## Your task
+
+In the terminal, install the cleanup and nose tasks by applying the tasks.yml file with kubectl apply -f .tekton/tasks.yml command.
+Open the OpenShift console from the lab environment.
+Create a PVC from the Administrator perspective with
+storageclass: skills-network-learner
+select a PVC: oc-lab-pvc
+size: 1GB
+Create a new pipeline and a workspace called output
+Add the following steps in this order:
+cleanup
+git clone
+flake8 linting
+nose tests
+buildah task
+Test the pipeline works. Take a screenshot as described in this exercise's Solutions section.
+Add the final step of deploying the application to the lab openshift cluster using the OpenShift client task and the oc deploy command.
+oc create deployment $(params.app-name) --image=$(params.build-image) --dry-run=client -o yaml | oc apply -f -
+You can refer to the videos and other content in the module CI CD with OpenShift Pipelines of the course in case you want to familiarize yourself with the concepts before proceeding further.
